@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insta Posts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/index.css">
+</head>
+<body>
+    <div class="app">
+        <div class="icon-button button go-back">
+            <img src="./assets/icons/arrow.svg" alt="">
+        </div>
+        <div class="icon-button button add-new">
+            <img src="./assets/icons/plus.svg" alt="">
+        </div>
+        <div class="loading-view hidden">
+            <div class="spinner spinner-big"></div>
+        </div>
+        <div class="timeline-view hidden">
+        </div>
+        <div class="edit-view">
+            <div class="player">
+                <div class="loading" id="video-loading">
+                    <div class="spinner spinner-big"></div>
+                </div>
+                <div class="video hidden" id="video-found">
+                    <div class="icon-button button trash" id="bin">
+                        <img src="./assets/icons/trash.svg" alt="">
+                    </div>
+                    <div class="icon-button button download" id="download">
+                        <img src="./assets/icons/download.svg" alt="">
+                    </div>
+                    <video id="media-player" autoplay loop></video>
+                </div>
+                <div class="upload button hidden" id="video-upload">
+                    <img src="./assets/icons/upload.svg" alt="">
+                </div>
+            </div>
+            <div class="edit-container">
+                <div class="edit">
+                    <div class="form-group">
+                        <label for="title">Entry Title</label>
+                        <input type="text" class="skeleton" id="title-input" spellcheck="false">
+                    </div>
+                    <div class="form-group">
+                        <label for="date-input">Release Date</label>
+                        <input type="date" disabled id="date-input" class="skeleton">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description-input" spellcheck="false"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="hashtags">Hashtags <span class="cta button" id="generate_hashtag">Generate</span></label>
+                        <textarea id="hashtag-input" spellcheck="false"></textarea>
+                    </div>
+                    <div class="button-group" id="button-inputs">
+                        <button class="button red" id="delete">Delete</button>
+                        <button class="button green" id="update">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/scripts/firebase.js" type="module"></script>
+    <script src="./assets/scripts/script.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+:root {
+    --shade-dark: rgba(0,0,0,.1);
+    --cream: #fdfcdc;
+    --light: #fff;
+    --dark: #595959;
+    --pink: #f07167;
+    --cream-2: #fed9b7; 
+    --blue: #0081a7;
+    --light-blue: #00afb9;
+
+    --dark-grey: #6c757d;
+    --red: #dc3545;
+    --dark-green: #198754;
+    --green: #20c997;
+    --grey: #f2f4f5;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--light);
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+}
+
+.hidden { display: none !important; }
+
+.app {
+    width: 100%;
+    height: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.notification {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: .5rem 1rem;
+    color:  white;
+    font-weight: 500;
+    font-size: 1.2rem;
+    z-index: 999;
+    animation: fade 3.5s;
+    opacity: 0;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.icon-button {
+    position: absolute;
+    background-color: #f3f3f3;
+    padding: .5rem;
+    border-radius: 100%;
+    z-index: 899;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+}
+.icon-button img {
+    width: 100%;
+    height: 100%;
+}
+.button { cursor: pointer; }
+.button:hover { opacity: .9; }
+.button:active { opacity: .75; }
+
+.go-back {
+    bottom: 2.5rem;
+    left: 2.5rem;
+    padding: 1rem;
+}
+.add-new {
+    bottom: 2.5rem;
+    right: 2.5rem;
+    background-color: var(--green);
+}
+.go-back, .add-new {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+}
+
+.loading-view {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 
+    timeline
+
+    <div class="timeline-view">
+        <div class="month">
+            <div class="vertical-line">
+                <div class="ball"></div>
+            </div>
+            <h1>June</h1>
+            <div class="cards-list">
+                <div class="card">
+                    <p>23rd June</p>
+                    <p><strong>Guru Purnima</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+*/
+.timeline-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 3rem;
+}
+.month {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    position: relative;
+    padding: 6rem 3rem;
+    width: 100%;
+}
+.vertical-line {
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    background-color: var(--green);
+    left: 0;
+    top: 0;
+}
+.vertical-line .ball {
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--light);
+    border: 3px solid var(--green);
+    border-radius: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 8.5rem
+}
+.month h1 {
+    font-size: 5rem;
+    font-weight: 100;
+    margin-bottom: 2.5rem;
+}
+.month .cards-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.cards-list .card {
+    background-color: var(--grey);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+.cards-list .card:hover {
+    background-color: #ededed;
+}
+.cards-list .card:active {
+    opacity: .8;
+}
+.cards-list .card p {
+    font-size: 1rem;
+    white-space: nowrap;
+    margin: 0;
+}
+/* 
+<div class="date">
+    <p>23rd</p>
+</div>
+*/
+.cards-list .card .date {
+    background-color: var(--green);
+    text-align: center;
+    /* color: white; */
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.cards-list .card .date p {
+    /* transform: rotate(-90deg); */
+    font-weight: 500;
+    padding: .75rem;
+}
+.cards-list .card .text {
+    font-size: 1.4rem;
+    padding: 1rem 1.5rem;
+    font-weight: 300;
+    color: black
+}
+/* 
+    edit-view
+
+    <div class="player">
+
+    </div>
+    <div class="edit">
+        <div class="form-group">
+            <label for="date-input">Date</label>
+            <input type="date" class="form-control" id="date-input">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control description" id="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="hashtags">Hashtags</label>
+            <textarea class="form-control hashtags" id="hashtags" rows="3"></textarea>
+        </div>
+        <div class="button-group">
+            <button class="btn btn-danger mr-2">Delete</button>
+            <button class="btn btn-primary">Update</button>
+        </div>
+    </div>
+*/
+.edit-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 3rem;
+    gap: 3rem
+}
+@media screen and (max-width: 750px) {
+    .edit-view {
+        grid-template-columns: 1fr;
+    }
+}
+.player {
+    position: relative;
+    width: 100%;
+    padding-top: 177.78%; /* 16 / 9 * 100% */
+    background-color: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.edit-container {
+    position: relative;
+    width: 100%;
+    padding-top: 177.78%; /* 16 / 9 * 100% */
+    overflow: hidden;
+}
+.player > * {
+    position: absolute;
+}
+.player .upload {
+    border: 3px dotted var(--green);
+}
+.player .upload img {
+    width: 50px;
+    height: 50px;
+}
+
+#media-player {
+    height: 100%;
+    width: 100%;
+}
+
+.player .video, .player .loading, .player .upload {
+    top: 0;
+    left: 0;
+    background-color: var(--grey);
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    z-index: 99;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.player .trash {
+    bottom: 1rem;
+    left: 1rem;
+}
+.player .download {
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.edit {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.edit .form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+.edit .form-group:has(#hashtag-input) {
+    margin-bottom: 0;
+}
+
+.form-group input, .form-group textarea {
+    background-color: var(--grey);
+    border: 0;
+    font-size: 1.2rem;
+    padding: .5rem;
+    resize: none;
+    height: 100%;
+}
+.form-group:has(#description-input) {
+    height: 100%;
+}
+.form-group label {
+    color: var(--dark-grey);
+    font-weight: 300;
+    margin-bottom: .5rem;
+    display: flex;
+}
+.form-group label span {
+    color: var(--dark-green);
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.edit .button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    margin-top: 2rem;
+}
+.edit .button-group button {
+    width: 100%;
+    padding: .5rem;
+    border-radius: 8px;
+    border: 0;
+    outline: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.red {
+    background-color: var(--red);
+}
+.green {
+    background-color: var(--green);
+}
+
+/* 
+    skeleton
+*/
+
+.skeleton {
+    color: transparent;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-animation 1.5s infinite;
+}
+
+@keyframes skeleton-animation {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* 
+    spinner
+*/
+.spinner {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--green);
+    border-right-color: var(--grey);
+    border-bottom-color: var(--grey); 
+    border-left-color: var(--grey); 
+    animation: spin 1s linear infinite;
+}
+
+.spinner-big {
+    width: 2rem;
+    height: 2rem;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
